@@ -8,6 +8,8 @@ import MainPage from './Layout/MainPage'
 import MainLayout from './Layout/MainLayout'
 import PrivetRoute from './Route/PrivetRoute'
 import HomePage from './Pages/HomePage'
+import ManageAllTask from './Component/ManageAllTask'
+
 
 
 createRoot(document.getElementById('root')).render(
@@ -20,6 +22,8 @@ createRoot(document.getElementById('root')).render(
 
     <Route  element={<PrivetRoute><MainLayout></MainLayout></PrivetRoute>}>
     <Route path='/' element={<HomePage></HomePage>}></Route>
+    <Route path='/ManageAllTask' element={<ManageAllTask></ManageAllTask>}></Route>
+   
     </Route>
 
   </Routes>
