@@ -17,14 +17,15 @@ const ManageAllTask = () => {
 
     useEffect(() => {
         if (user?.uid) {
-            axios.get(`http://localhost:5000/tasks?email=${user.uid}`)
+            axios
+                .get(`https://to-do-list-server-site-1.onrender.com/tasks?email=${user.email}`)
                 .then((res) => {
                     console.log("API Response:", res.data);
-                    setTasks(res.data);
+                    setTasks(res.data.filter(data => data.email === user.email));
                 })
                 .catch((err) => console.error("Error fetching tasks:", err));
         }
-    }, [user?.uid]);
+    }, [user?.email]);
 
 
     // Handle Delete
@@ -45,7 +46,7 @@ const ManageAllTask = () => {
                     icon: "success"
                 });
                 axios
-                    .delete(`http://localhost:5000/tasks/${id}`)
+                    .delete(`https://to-do-list-server-site.onrender.com/tasks/${id}`)
                     .then((res) => {
                         setTasks((prevTasks) => prevTasks.filter((task) => task._id !== id));
                     })
@@ -76,7 +77,7 @@ const ManageAllTask = () => {
 
 
         try {
-            const response = await axios.put(`http://localhost:5000/tasks/${selectedTask._id}`, updatedTask);
+            const response = await axios.put(`https://to-do-list-server-site.onrender.com/tasks/${selectedTask._id}`, updatedTask);
             setTasks((prevTasks) =>
                 prevTasks.map((task) =>
                     task._id === selectedTask._id ? { ...task, ...updatedTask } : task

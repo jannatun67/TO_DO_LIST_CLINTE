@@ -16,7 +16,7 @@ const Model = () => {
         };
         console.log(newTask);
 
-         const postTask = await axios.post('http://localhost:5000/Add-todoTask',newTask)
+         const postTask = await axios.post('https://to-do-list-server-site.onrender.comAdd-todoTask',newTask)
          console.log(postTask);
          Swal.fire({
             position: "top-end",

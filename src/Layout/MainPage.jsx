@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { IoLogoGoogleplus } from "react-icons/io";
 import taskLogo from '../assets/task.png'
 import { useContext } from "react";
@@ -23,8 +24,9 @@ const MainPage = () => {
             };
 
             // ✅ FIX: Handle API response
-            const res = await axios.post("http://localhost:5000/users", userData);
+            const res = await axios.post("https://to-do-list-server-site.onrender.com/users", userData);
             console.log(res.data);
+           
             Swal.fire({
                 position: "top-end",
                 icon: "success",
@@ -32,8 +34,8 @@ const MainPage = () => {
                 showConfirmButton: false,
                 timer: 1500
               });
-
-            navigate('/')
+              navigate('/')
+             
             
         } catch (error) {
             console.error("Login Error:", error);

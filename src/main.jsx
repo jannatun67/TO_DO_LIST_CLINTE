@@ -18,8 +18,8 @@ createRoot(document.getElementById('root')).render(
    <BrowserRouter>
      <Routes>
 
-    <Route path='/MainPage'  element={<MainPage></MainPage>}></Route>
-
+    {/* <Route path='/'element={<MainLayout></MainLayout>}></Route> */}
+    <Route path='/login'element={<MainPage></MainPage>}></Route>
     <Route  element={<PrivetRoute><MainLayout></MainLayout></PrivetRoute>}>
     <Route path='/' element={<HomePage></HomePage>}></Route>
     <Route path='/ManageAllTask' element={<ManageAllTask></ManageAllTask>}></Route>
@@ -29,5 +29,5 @@ createRoot(document.getElementById('root')).render(
   </Routes>
   </BrowserRouter>
    </AuthProvider>
-  </StrictMode>,
+  </StrictMode>
 )

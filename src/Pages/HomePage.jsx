@@ -22,17 +22,18 @@ const HomePage = () => {
 
 
   useEffect(() => {
-      if (user?.uid) {
-          axios.get(`http://localhost:5000/tasks?email=${user.uid}`)
-              .then((res) => {
-                  console.log("API Response:", res.data);  // Debugging
-                  setTasks(res.data);
-              })
-              .catch((err) => console.error("Error fetching tasks:", err));
-      }
-  }, [user?.uid]);
+    if (user?.email) {
+        axios.get(`https://to-do-list-server-site-1.onrender.com/tasks?email=${user?.email}`)
+            .then((res) => {
+                console.log("API Response:", res.data); 
+                 
+                setTasks(res.data.filter(data => data.email === user.email));
+            })
+            .catch((err) => console.error("Error fetching tasks:", err));
+    }
+}, [user?.email]);
 
-
+console.log(tasks);
   const handleSubmit = async (e) => {
       e.preventDefault();
 
@@ -42,11 +43,12 @@ const HomePage = () => {
           description,
           category: "to-do",  // Fixed default category
           timestamp: new Date().toISOString(),
+          email:user.email
       };
 
 
       try {
-          const response = await axios.post("http://localhost:5000/tasks", newTask);
+          const response = await axios.post("https://to-do-list-server-site.onrender.com/tasks", newTask);
           setTasks((prevTasks) => [...prevTasks, response.data]);
           setTitle("");
           setDescription("");
@@ -75,7 +77,7 @@ const HomePage = () => {
 
 
       try {
-          await axios.put(`http://localhost:5000/tasks/${taskId}`, { category: newCategory });
+          await axios.put(`https://to-do-list-server-site.onrender.com/tasks/${taskId}`, { category: newCategory });
       } catch (error) {
           console.error("Error updating task category:", error);
       }
